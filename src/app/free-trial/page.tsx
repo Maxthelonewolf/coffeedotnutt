@@ -6,6 +6,13 @@ import Footer from "@/components/Footer";
 
 export default function FreeTrialPage() {
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    device: "Firestick",
+    country: "USA",
+    referral: "Instagram",
+  });
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
   return (
     <main className="relative min-h-screen bg-[#050505] text-white selection:bg-[#d4a574] selection:text-black">
@@ -32,7 +39,61 @@ export default function FreeTrialPage() {
 
           {/* Form Card */}
           <div className="bg-white/[0.03] border border-white/10 rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl shadow-2xl">
-            <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); setLoading(true); }}>
+            {message && (
+              <div className={`mb-6 p-4 rounded-2xl border ${
+                message.type === "success" 
+                  ? "bg-green-500/10 border-green-500/30 text-green-400" 
+                  : "bg-red-500/10 border-red-500/30 text-red-400"
+              }`}>
+                {message.text}
+              </div>
+            )}
+            <form 
+              className="space-y-8" 
+              onSubmit={async (e) => { 
+                e.preventDefault(); 
+                setLoading(true);
+                setMessage(null);
+
+                try {
+                  const response = await fetch("/api/submit-trial", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                  });
+
+                  const data = await response.json();
+
+                  if (response.ok) {
+                    setMessage({
+                      type: "success",
+                      text: data.message || "Your trial request has been submitted successfully! We'll send your login credentials shortly.",
+                    });
+                    // Reset form
+                    setFormData({
+                      email: "",
+                      device: "Firestick",
+                      country: "USA",
+                      referral: "Instagram",
+                    });
+                  } else {
+                    setMessage({
+                      type: "error",
+                      text: data.error || "Something went wrong. Please try again.",
+                    });
+                  }
+                } catch (error) {
+                  setMessage({
+                    type: "error",
+                    text: "Failed to submit your request. Please try again later.",
+                  });
+                } finally {
+                  setLoading(false);
+                }
+              }}
+            >
               
               {/* Email Input */}
               <div className="space-y-3">
@@ -40,22 +101,28 @@ export default function FreeTrialPage() {
                 <input 
                   type="email" 
                   required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="where should we send your login?"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-[#d4a574] focus:ring-1 focus:ring-[#d4a574] transition-all placeholder:text-white/20"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-[#d4a574] focus:ring-1 focus:ring-[#d4a574] transition-all placeholder:text-white/20 text-white"
                 />
               </div>
 
               {/* Device Selection */}
               <div className="space-y-3">
                 <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4a574] font-bold">Select your device</label>
-                <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-[#d4a574] appearance-none cursor-pointer transition-all">
-                  <option className="bg-[#0a0a0a]">Firestick</option>
-                  <option className="bg-[#0a0a0a]">Smart TV (Samsung/LG)</option>
-                  <option className="bg-[#0a0a0a]">Android Phone / Tablet</option>
-                  <option className="bg-[#0a0a0a]">Android Box (Nvidia Shield/Buzz)</option>
-                  <option className="bg-[#0a0a0a]">iPhone / iPad</option>
-                  <option className="bg-[#0a0a0a]">PC / Mac (Browser)</option>
-                  <option className="bg-[#0a0a0a]">Other</option>
+                <select 
+                  value={formData.device}
+                  onChange={(e) => setFormData({ ...formData, device: e.target.value })}
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-[#d4a574] appearance-none cursor-pointer transition-all text-white"
+                >
+                  <option value="Firestick" className="bg-[#0a0a0a]">Firestick</option>
+                  <option value="Smart TV (Samsung/LG)" className="bg-[#0a0a0a]">Smart TV (Samsung/LG)</option>
+                  <option value="Android Phone / Tablet" className="bg-[#0a0a0a]">Android Phone / Tablet</option>
+                  <option value="Android Box (Nvidia Shield/Buzz)" className="bg-[#0a0a0a]">Android Box (Nvidia Shield/Buzz)</option>
+                  <option value="iPhone / iPad" className="bg-[#0a0a0a]">iPhone / iPad</option>
+                  <option value="PC / Mac (Browser)" className="bg-[#0a0a0a]">PC / Mac (Browser)</option>
+                  <option value="Other" className="bg-[#0a0a0a]">Other</option>
                 </select>
               </div>
 
@@ -63,25 +130,33 @@ export default function FreeTrialPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-3">
                   <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4a574] font-bold">Your Country</label>
-                  <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#d4a574] appearance-none cursor-pointer transition-all text-sm">
-                    <option className="bg-[#0a0a0a]">USA</option>
-                    <option className="bg-[#0a0a0a]">Canada</option>
-                    <option className="bg-[#0a0a0a]">UK</option>
-                    <option className="bg-[#0a0a0a]">Australia</option>
-                    <option className="bg-[#0a0a0a]">Middle East</option>
-                    <option className="bg-[#0a0a0a]">Europe</option>
-                    <option className="bg-[#0a0a0a]">Other</option>
+                  <select 
+                    value={formData.country}
+                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#d4a574] appearance-none cursor-pointer transition-all text-sm text-white"
+                  >
+                    <option value="USA" className="bg-[#0a0a0a]">USA</option>
+                    <option value="Canada" className="bg-[#0a0a0a]">Canada</option>
+                    <option value="UK" className="bg-[#0a0a0a]">UK</option>
+                    <option value="Australia" className="bg-[#0a0a0a]">Australia</option>
+                    <option value="Middle East" className="bg-[#0a0a0a]">Middle East</option>
+                    <option value="Europe" className="bg-[#0a0a0a]">Europe</option>
+                    <option value="Other" className="bg-[#0a0a0a]">Other</option>
                   </select>
                 </div>
 
                 <div className="space-y-3">
                   <label className="text-[10px] uppercase tracking-[0.3em] text-[#d4a574] font-bold">How did you find us?</label>
-                  <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#d4a574] appearance-none cursor-pointer transition-all text-sm">
-                    <option className="bg-[#0a0a0a]">Instagram</option>
-                    <option className="bg-[#0a0a0a]">TikTok</option>
-                    <option className="bg-[#0a0a0a]">Google Search</option>
-                    <option className="bg-[#0a0a0a]">Friend Referral</option>
-                    <option className="bg-[#0a0a0a]">Other</option>
+                  <select 
+                    value={formData.referral}
+                    onChange={(e) => setFormData({ ...formData, referral: e.target.value })}
+                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#d4a574] appearance-none cursor-pointer transition-all text-sm text-white"
+                  >
+                    <option value="Instagram" className="bg-[#0a0a0a]">Instagram</option>
+                    <option value="TikTok" className="bg-[#0a0a0a]">TikTok</option>
+                    <option value="Google Search" className="bg-[#0a0a0a]">Google Search</option>
+                    <option value="Friend Referral" className="bg-[#0a0a0a]">Friend Referral</option>
+                    <option value="Other" className="bg-[#0a0a0a]">Other</option>
                   </select>
                 </div>
               </div>

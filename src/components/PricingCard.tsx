@@ -47,7 +47,7 @@ export default function PricingCard() {
   const { ref: sectionRef, isVisible } = useScrollAnimation<HTMLElement>({ threshold: 0.1 });
 
   return (
-    <section ref={sectionRef} className="relative py-32 bg-[#050505] overflow-hidden min-h-screen flex items-center">
+    <section id="pricing" ref={sectionRef} className="relative py-32 bg-[#050505] overflow-hidden min-h-screen flex items-center">
       {/* Background Polish - Subtle Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_#d4a5740a_0%,_transparent_70%)] pointer-events-none" />
 
@@ -112,8 +112,8 @@ export default function PricingCard() {
               </div>
 
               {/* Button */}
-              <a
-                href="https://wa.me/12268943166"
+              <Link
+                href="/free-trial"
                 className={`block w-full py-4 text-center rounded-2xl font-bold transition-all duration-500
                   ${plan.popular 
                     ? 'bg-[#d4a574] text-black hover:bg-white hover:scale-[1.02]' 
@@ -122,7 +122,7 @@ export default function PricingCard() {
                 `}
               >
                 Get Started
-              </a>
+              </Link>
             </div>
           ))}
         </div>

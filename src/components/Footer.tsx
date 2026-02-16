@@ -58,13 +58,27 @@ export default function Footer() {
               Navigation
             </h4>
             <nav className="grid grid-cols-1 gap-y-4">
-              {[
-                { name: "Home", href: "/" },
-                { name: "Pricing", href: "/#pricing" },
-                { name: "Free Trial", href: "/free-trial" },
-                { name: "Downloads", href: "/downloads" },
-                { name: "Contact", href: "/contact" },
-              ].map((link) => (
+              <Link href="/" className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group">
+                <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
+                Home
+              </Link>
+              <Link href="/#pricing" className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group">
+                <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
+                Pricing
+              </Link>
+              <Link href="/free-trial" className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group">
+                <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
+                Free Trial
+              </Link>
+              <Link href="/downloads" className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group">
+                <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
+                Downloads
+              </Link>
+              <a href="mailto:CoffeeDonutTV@gmail.com" className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group">
+                <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
+                Contact
+              </a>
+            </nav>
                 <Link
                   key={link.name}
                   href={link.href}

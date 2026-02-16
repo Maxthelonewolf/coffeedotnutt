@@ -37,7 +37,7 @@ export default function Header() {
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
             {time}
           </div>
-          <a href="https://wa.me/12268943166" className="px-4 md:px-5 py-2 bg-[#d4a574] text-black text-[10px] font-bold uppercase tracking-wider md:tracking-widest rounded-full hover:bg-white transition-all">
+          <a href="mailto:CoffeeDonutTV@gmail.com" className="px-4 md:px-5 py-2 bg-[#d4a574] text-black text-[10px] font-bold uppercase tracking-wider md:tracking-widest rounded-full hover:bg-white transition-all">
             Contact
           </a>
         </div>
