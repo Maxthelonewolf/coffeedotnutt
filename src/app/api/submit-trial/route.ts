@@ -74,8 +74,12 @@ export async function POST(request: NextRequest) {
         `,
       });
 
+      if (emailResult.error) {
+        throw new Error(emailResult.error.message || "Failed to send email");
+      }
+
       console.log("✅ Email sent successfully!", {
-        id: emailResult.id,
+        id: emailResult.data?.id || "unknown",
         to: "CoffeeDonutTV@gmail.com",
         from: fromEmail,
         timestamp: new Date().toISOString(),
