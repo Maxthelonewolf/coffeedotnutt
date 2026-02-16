@@ -35,12 +35,22 @@ export async function POST(request: NextRequest) {
     });
 
     // Send email using Resend
-    // Use your custom domain if verified, otherwise use Resend's default domain
-    const fromEmail = process.env.RESEND_FROM_EMAIL || "CoffeeDonutTV <onboarding@resend.dev>";
+    // Use your verified domain email (coffeedonuttv.com is verified)
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "CoffeeDonutTV <noreply@coffeedonuttv.com>";
     
-    if (resend) {
-      try {
-        await resend.emails.send({
+    if (!resend) {
+      console.error("RESEND_API_KEY is not set in environment variables!");
+      return NextResponse.json(
+        { 
+          success: false,
+          error: "Email service not configured. Please contact support." 
+        },
+        { status: 500 }
+      );
+    }
+
+    try {
+      const emailResult = await resend.emails.send({
         from: fromEmail,
         to: "CoffeeDonutTV@gmail.com",
         replyTo: email,
@@ -64,23 +74,37 @@ export async function POST(request: NextRequest) {
         `,
       });
 
-        console.log("Email sent successfully to CoffeeDonutTV@gmail.com");
-      } catch (emailError) {
-        console.error("Error sending email:", emailError);
-        // Still return success to user, but log the error
-        // You can optionally return an error if email is critical
-      }
-    } else {
-      console.warn("RESEND_API_KEY not set. Email not sent. Please configure Resend API key in Vercel environment variables.");
-    }
+      console.log("✅ Email sent successfully!", {
+        id: emailResult.id,
+        to: "CoffeeDonutTV@gmail.com",
+        from: fromEmail,
+        timestamp: new Date().toISOString(),
+      });
 
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: "Your trial request has been submitted successfully! We'll send your login credentials shortly." 
-      },
-      { status: 200 }
-    );
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: "Your trial request has been submitted successfully! We'll send your login credentials shortly." 
+        },
+        { status: 200 }
+      );
+    } catch (emailError: any) {
+      console.error("❌ Error sending email:", {
+        error: emailError,
+        message: emailError?.message,
+        name: emailError?.name,
+        stack: emailError?.stack,
+      });
+      
+      // Return error to user so they know something went wrong
+      return NextResponse.json(
+        { 
+          success: false,
+          error: "Failed to send email. Please try again or contact us directly." 
+        },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.error("Error submitting trial request:", error);
     return NextResponse.json(
