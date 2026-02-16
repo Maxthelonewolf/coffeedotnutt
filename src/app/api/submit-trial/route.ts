@@ -88,12 +88,13 @@ export async function POST(request: NextRequest) {
         },
         { status: 200 }
       );
-    } catch (emailError: any) {
+    } catch (emailError) {
+      const error = emailError as Error;
       console.error("❌ Error sending email:", {
-        error: emailError,
-        message: emailError?.message,
-        name: emailError?.name,
-        stack: emailError?.stack,
+        error: error,
+        message: error?.message,
+        name: error?.name,
+        stack: error?.stack,
       });
       
       // Return error to user so they know something went wrong
