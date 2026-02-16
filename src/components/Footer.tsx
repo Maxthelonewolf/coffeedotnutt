@@ -74,7 +74,12 @@ export default function Footer() {
                 <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
                 Downloads
               </Link>
-              <a href="mailto:CoffeeDonutTV@gmail.com" className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group">
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=CoffeeDonutTV@gmail.com&su=Contact%20CoffeeDonutTV&body=Hello%20CoffeeDonutTV%20Team%2C%0A%0A"
+                className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
                 Contact
               </a>
