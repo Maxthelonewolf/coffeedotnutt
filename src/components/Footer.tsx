@@ -79,16 +79,6 @@ export default function Footer() {
                 Contact
               </a>
             </nav>
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group"
-                >
-                  <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
-                  {link.name}
-                </Link>
-              ))}
-            </nav>
           </div>
 
           {/* Connect Pillar */}

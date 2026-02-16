@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(request: NextRequest) {
   try {
@@ -38,8 +38,9 @@ export async function POST(request: NextRequest) {
     // Use your custom domain if verified, otherwise use Resend's default domain
     const fromEmail = process.env.RESEND_FROM_EMAIL || "CoffeeDonutTV <onboarding@resend.dev>";
     
-    try {
-      await resend.emails.send({
+    if (resend) {
+      try {
+        await resend.emails.send({
         from: fromEmail,
         to: "CoffeeDonutTV@gmail.com",
         replyTo: email,
@@ -63,11 +64,14 @@ export async function POST(request: NextRequest) {
         `,
       });
 
-      console.log("Email sent successfully to CoffeeDonutTV@gmail.com");
-    } catch (emailError) {
-      console.error("Error sending email:", emailError);
-      // Still return success to user, but log the error
-      // You can optionally return an error if email is critical
+        console.log("Email sent successfully to CoffeeDonutTV@gmail.com");
+      } catch (emailError) {
+        console.error("Error sending email:", emailError);
+        // Still return success to user, but log the error
+        // You can optionally return an error if email is critical
+      }
+    } else {
+      console.warn("RESEND_API_KEY not set. Email not sent. Please configure Resend API key in Vercel environment variables.");
     }
 
     return NextResponse.json(
