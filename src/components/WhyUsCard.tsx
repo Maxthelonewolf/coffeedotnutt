@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useScrollAnimation, getStaggerDelay } from "@/hooks/useScrollAnimation";
 
 const features = [
@@ -54,13 +55,13 @@ export default function WhyUsCard() {
         
         {/* Header Section */}
         <div className={`text-center mb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          <a href="/" className="inline-block p-3 rounded-2xl bg-white/5 border border-white/10 mb-8 hover:opacity-80 transition-opacity">
+          <Link href="/" className="inline-block p-3 rounded-2xl bg-white/5 border border-white/10 mb-8 hover:opacity-80 transition-opacity">
             <img 
               src="https://ext.same-assets.com/2445618519/4009277168.png" 
               alt="Logo" 
               className="w-12 h-12 object-contain" 
             />
-          </a>
+          </Link>
           <h2 className="heading-large text-white mb-6 tracking-tighter">
             Why Coffee & Donut TV?
           </h2>
@@ -99,7 +100,7 @@ export default function WhyUsCard() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
             {/* Subtle Premium Button */}
-            <a 
+            <Link 
               href="/free-trial" 
               className="relative btn-premium px-12 py-5 text-lg overflow-hidden group border border-white/10 hover:border-[#d4a574]/40 transition-all duration-700 rounded-2xl"
               style={{ background: 'linear-gradient(180deg, rgba(212,165,116,0.12) 0%, rgba(212,165,116,0.02) 100%)' }}
@@ -111,7 +112,7 @@ export default function WhyUsCard() {
               <span className="absolute inset-0 bg-[#d4a574]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
               
               <span className="relative z-10 font-bold tracking-tight text-white">Start Free Trial</span>
-            </a>
+            </Link>
 
             <a href="https://wa.me/12268943166" className="text-white/30 hover:text-white transition-all duration-500 flex items-center gap-2 group font-light py-2">
               Consult with Support 

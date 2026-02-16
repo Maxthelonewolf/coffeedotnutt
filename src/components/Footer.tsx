@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Footer() {
   const [year] = useState(new Date().getFullYear());
@@ -28,7 +29,7 @@ export default function Footer() {
           
           {/* Brand Pillar */}
           <div className="lg:col-span-5 space-y-8">
-            <a href="/" className="flex items-center gap-5 group cursor-pointer">
+            <Link href="/" className="flex items-center gap-5 group cursor-pointer">
               <div className="relative">
                 <img
                   src="https://ext.same-assets.com/2445618519/4009277168.png"
@@ -45,7 +46,7 @@ export default function Footer() {
                   Premium Streaming Service
                 </p>
               </div>
-            </a>
+            </Link>
             <p className="text-white/40 text-lg font-light leading-relaxed max-w-md italic">
               "A cozy cup of entertainment—brewed daily. 9,500+ channels and 125,000+ cinematic experiences at your fingertips."
             </p>
@@ -64,14 +65,14 @@ export default function Footer() {
                 { name: "Downloads", href: "/downloads" },
                 { name: "Contact", href: "/contact" },
               ].map((link) => (
-                <a
+                <Link
                   key={link.name}
                   href={link.href}
                   className="text-white/40 hover:text-[#d4a574] hover:translate-x-2 transition-all duration-300 text-base font-light flex items-center gap-2 group"
                 >
                   <span className="w-0 h-px bg-[#d4a574] group-hover:w-4 transition-all" />
                   {link.name}
-                </a>
+                </Link>
               ))}
             </nav>
           </div>

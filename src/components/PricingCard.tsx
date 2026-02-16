@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useScrollAnimation, getStaggerDelay } from "@/hooks/useScrollAnimation";
 
 const plans = [
@@ -61,9 +62,9 @@ export default function PricingCard() {
             One Simple Subscription.
           </h2>
           <div className="pt-4">
-            <a href="/free-trial" className="text-white/40 hover:text-[#d4a574] transition-all duration-300 text-lg border-b border-white/5 hover:border-[#d4a574] pb-1">
+            <Link href="/free-trial" className="text-white/40 hover:text-[#d4a574] transition-all duration-300 text-lg border-b border-white/5 hover:border-[#d4a574] pb-1">
               Try It Free — No Credit Card Needed
-            </a>
+            </Link>
           </div>
         </div>
 

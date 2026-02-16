@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useScrollAnimation, getStaggerDelay } from "@/hooks/useScrollAnimation";
@@ -188,9 +189,9 @@ export default function DownloadsPage() {
             ))}
           </div>
           <div className="mt-20 text-center">
-            <a href="/free-trial" className="inline-block px-12 py-5 bg-white text-black font-black rounded-2xl hover:bg-[#d4a574] transition-colors uppercase tracking-widest text-sm">
+            <Link href="/free-trial" className="inline-block px-12 py-5 bg-white text-black font-black rounded-2xl hover:bg-[#d4a574] transition-colors uppercase tracking-widest text-sm">
               Start Your Free Trial
-            </a>
+            </Link>
           </div>
         </div>
       </section>
