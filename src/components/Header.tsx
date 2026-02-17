@@ -38,10 +38,8 @@ export default function Header() {
             {time}
           </div>
           <a 
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=CoffeeDonutTV@gmail.com&su=Contact%20CoffeeDonutTV&body=Hello%20CoffeeDonutTV%20Team%2C%0A%0A"
+            href="mailto:CoffeeDonutTV@gmail.com?subject=Contact%20CoffeeDonutTV&body=Hello%20CoffeeDonutTV%20Team%2C%0A%0A"
             className="px-4 md:px-5 py-2 bg-[#d4a574] text-black text-[10px] font-bold uppercase tracking-wider md:tracking-widest rounded-full hover:bg-white transition-all"
-            target="_blank"
-            rel="noopener noreferrer"
           >
             Contact
           </a>
