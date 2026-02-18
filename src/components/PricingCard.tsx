@@ -112,8 +112,10 @@ export default function PricingCard() {
               </div>
 
               {/* Button */}
-              <Link
-                href="/free-trial"
+              <a
+                href="https://wa.me/12268943166"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`block w-full py-4 text-center rounded-2xl font-bold transition-all duration-500
                   ${plan.popular 
                     ? 'bg-[#d4a574] text-black hover:bg-white hover:scale-[1.02]' 
@@ -122,7 +124,7 @@ export default function PricingCard() {
                 `}
               >
                 Get Started
-              </Link>
+              </a>
             </div>
           ))}
         </div>
