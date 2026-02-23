@@ -4,14 +4,21 @@ import { useState, useEffect } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 // MATHEMATICALLY CORRECT FLAT-RATE
-const pricingData = {
+type Duration = 1 | 3 | 6 | 12;
+
+type PricingInfo = {
+  standard: string;
+  premium: string;
+  label: string;
+  tag?: string;
+};
+
+const pricingData: Record<Duration, PricingInfo> = {
   1: { standard: "$6", premium: "$8", label: "1 Month" },
   3: { standard: "$18", premium: "$24", label: "3 Months" },
   6: { standard: "$36", premium: "$48", label: "6 Months", tag: "Most Popular" },
   12: { standard: "$72", premium: "$96", label: "12 Months", tag: "Best Value" },
 };
-
-type Duration = 1 | 3 | 6 | 12;
 
 export default function PricingCard() {
   const [selectedDuration, setSelectedDuration] = useState<Duration>(1);
@@ -22,13 +29,15 @@ export default function PricingCard() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % words.length);
+      setWordIndex((prev: number) => (prev + 1) % words.length);
     }, 3000);
     return () => clearInterval(interval);
   }, []);
 
+  const currentPricing: PricingInfo = pricingData[selectedDuration as Duration];
+  
   const getWhatsAppLink = (tier: string, price: string) => {
-    const message = encodeURIComponent(`Hi! I want to try the ${tier} ${pricingData[selectedDuration].label} plan for ${price}.`);
+    const message = encodeURIComponent(`Hi! I want to try the ${tier} ${currentPricing.label} plan for ${price}.`);
     return `https://wa.me/12268943166?text=${message}`;
   };
 
@@ -88,10 +97,10 @@ export default function PricingCard() {
             <div className="mb-10 pb-8 border-b border-white/5 h-[90px] flex items-baseline">
               <div key={selectedDuration} className="animate-in fade-in zoom-in-95 duration-500">
                 <span className="text-7xl font-black text-white tracking-tighter">
-                  {pricingData[selectedDuration].standard}
+                  {currentPricing.standard}
                 </span>
                 <span className="text-[10px] uppercase text-white/20 ml-3 tracking-widest font-bold">
-                  / {pricingData[selectedDuration].label}
+                  / {currentPricing.label}
                 </span>
               </div>
             </div>
@@ -107,7 +116,9 @@ export default function PricingCard() {
             </ul>
 
             <a 
-              href={getWhatsAppLink("Standard", pricingData[selectedDuration].standard)}
+              href={getWhatsAppLink("Standard", currentPricing.standard)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full py-5 text-center rounded-2xl bg-white/10 text-white font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white hover:text-black transition-all duration-300 active:scale-95"
             >
               Get Started
@@ -119,9 +130,9 @@ export default function PricingCard() {
             <div className="mb-8">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#d4a574]">Recommended</h3>
-                {pricingData[selectedDuration].tag && (
+                {currentPricing.tag && (
                   <span className="text-[8px] bg-[#d4a574] text-black px-3 py-1 rounded-full font-black uppercase tracking-tighter">
-                    {pricingData[selectedDuration].tag}
+                    {currentPricing.tag}
                   </span>
                 )}
               </div>
@@ -131,10 +142,10 @@ export default function PricingCard() {
             <div className="mb-10 pb-8 border-b border-white/5 h-[90px] flex items-baseline">
               <div key={`premium-${selectedDuration}`} className="animate-in fade-in zoom-in-95 duration-500">
                 <span className="text-7xl font-black text-[#d4a574] tracking-tighter">
-                  {pricingData[selectedDuration].premium}
+                  {currentPricing.premium}
                 </span>
                 <span className="text-[10px] uppercase text-white/20 ml-3 tracking-widest font-bold">
-                  / {pricingData[selectedDuration].label}
+                  / {currentPricing.label}
                 </span>
               </div>
             </div>
@@ -151,7 +162,9 @@ export default function PricingCard() {
             </ul>
 
             <a 
-              href={getWhatsAppLink("Premium", pricingData[selectedDuration].premium)}
+              href={getWhatsAppLink("Premium", currentPricing.premium)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full py-5 text-center rounded-2xl bg-[#d4a574] text-black font-black uppercase tracking-[0.2em] text-[10px] hover:bg-white transition-all duration-300 shadow-[0_0_25px_rgba(212,165,116,0.3)] active:scale-95"
             >
               Get Premium Access
