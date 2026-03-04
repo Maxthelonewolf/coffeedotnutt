@@ -1,0 +1,27 @@
+{
+  "name": "Coffee & Donut TV - Premium IPTV Streaming Service",
+  "short_name": "CoffeeDonutTV",
+  "description": "Premium IPTV streaming service with 9,500+ live channels, 125,000+ movies & series in 4K quality",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#d4a574",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://ext.same-assets.com/2445618519/4009277168.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://ext.same-assets.com/2445618519/4009277168.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["entertainment", "streaming", "media"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

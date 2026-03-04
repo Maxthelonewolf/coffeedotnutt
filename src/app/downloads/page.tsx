@@ -45,7 +45,7 @@ export default function DownloadsPage() {
              <img 
                src="https://ext.same-assets.com/2445618519/4009277168.png" 
                className="w-16 h-16 object-contain drop-shadow-2xl" 
-               alt="Logo" 
+               alt="Coffee & Donut TV Logo - Download IPTV App" 
              />
           </div>
           
@@ -90,7 +90,7 @@ export default function DownloadsPage() {
                 <div className="absolute w-4/5 h-4/5 bg-[#d4a574]/10 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <img
                   src="https://ext.same-assets.com/1630699721/2275043001.png"
-                  alt="Mobile Interface"
+                  alt="Coffee & Donut TV Mobile App Interface - XCIPTV Player for Android and iOS"
                   className="relative z-10 h-full w-auto object-contain transition-transform duration-700 group-hover:scale-105 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                 />
               </div>
@@ -144,7 +144,7 @@ export default function DownloadsPage() {
                 <div className="absolute w-4/5 h-4/5 bg-[#d4a574]/20 blur-[80px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <img
                   src="https://ext.same-assets.com/1630699721/3569676639.png"
-                  alt="TV Interface"
+                  alt="Coffee & Donut TV TV App Interface - TiviMate Player for Firestick and Smart TV"
                   className="relative z-10 h-full w-auto object-contain transition-transform duration-700 group-hover:scale-105 drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]"
                 />
               </div>

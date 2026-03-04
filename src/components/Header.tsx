@@ -17,7 +17,7 @@ export default function Header() {
       <div className="max-w-[1800px] mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* LEFT: Logo & Brand - Always visible */}
         <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity">
-          <img src="https://ext.same-assets.com/2445618519/4009277168.png" alt="Logo" className="w-8 h-8 md:w-7 md:h-7 object-contain" />
+          <img src="https://ext.same-assets.com/2445618519/4009277168.png" alt="Coffee & Donut TV Logo - Premium IPTV Streaming Service" className="w-8 h-8 md:w-7 md:h-7 object-contain" />
           <span className="font-bold text-xs md:text-xs tracking-[0.1em] md:tracking-[0.2em] text-white uppercase whitespace-nowrap">
             Coffee & Donut TV
           </span>

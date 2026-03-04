@@ -65,7 +65,7 @@ export default function StreamingCard() {
               <div key={index} className="flex-shrink-0">
                 <img
                   src={channel.src}
-                  alt={channel.name}
+                  alt={`${channel.name} - Live TV Channel on Coffee & Donut TV`}
                   className="h-7 md:h-9 w-auto object-contain brightness-90 hover:brightness-100 transition-all duration-500"
                 />
               </div>
@@ -127,7 +127,7 @@ export default function StreamingCard() {
             >
               <img
                 src={poster}
-                alt={`Movie ${index + 1}`}
+                alt={`Premium Movie Content - Coffee & Donut TV Streaming Library`}
                 className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-[1000ms] ease-out"
               />
               

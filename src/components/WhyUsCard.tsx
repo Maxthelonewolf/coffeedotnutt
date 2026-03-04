@@ -58,7 +58,7 @@ export default function WhyUsCard() {
           <Link href="/" className="inline-block p-3 rounded-2xl bg-white/5 border border-white/10 mb-8 hover:opacity-80 transition-opacity">
             <img 
               src="https://ext.same-assets.com/2445618519/4009277168.png" 
-              alt="Logo" 
+              alt="Coffee & Donut TV Logo - Premium IPTV Streaming Service" 
               className="w-12 h-12 object-contain" 
             />
           </Link>
