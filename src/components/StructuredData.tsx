@@ -5,7 +5,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Coffee & Donut TV",
-    "url": "https://coffeedonuttv.com",
+    "url": "https://www.coffeedonuttv.com",
     "logo": "https://ext.same-assets.com/2445618519/4009277168.png",
     "description": "Premium IPTV streaming service with 9,500+ live channels and 125,000+ movies & series",
     "email": "CoffeeDonutTV@gmail.com",
@@ -25,11 +25,11 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Coffee & Donut TV",
-    "url": "https://coffeedonuttv.com",
+    "url": "https://www.coffeedonuttv.com",
     "description": "Premium IPTV streaming service with 9,500+ live channels, 125,000+ movies & series",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://coffeedonuttv.com/search?q={search_term_string}",
+      "target": "https://www.coffeedonuttv.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };

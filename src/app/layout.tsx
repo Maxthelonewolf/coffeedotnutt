@@ -3,7 +3,7 @@ import "./globals.css";
 import { ClientBody } from "./ClientBody";
 import StructuredData from "@/components/StructuredData";
 
-const siteUrl = "https://coffeedonuttv.com";
+const siteUrl = "https://www.coffeedonuttv.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

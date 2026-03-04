@@ -16,10 +16,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Download Coffee & Donut TV App | All Devices Supported",
     description: "Download our IPTV app for Android, iOS, Firestick, Smart TV, and more. Choose the perfect app for your device.",
-    url: "https://coffeedonuttv.com/downloads",
+    url: "https://www.coffeedonuttv.com/downloads",
   },
   alternates: {
-    canonical: "https://coffeedonuttv.com/downloads",
+    canonical: "https://www.coffeedonuttv.com/downloads",
   },
 };
 

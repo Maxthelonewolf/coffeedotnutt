@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free 24-Hour IPTV Trial | Coffee & Donut TV",
     description: "Start your free 24-hour IPTV trial. No credit card required. Access 9,500+ channels and 125,000+ movies instantly.",
-    url: "https://coffeedonuttv.com/free-trial",
+    url: "https://www.coffeedonuttv.com/free-trial",
   },
   alternates: {
-    canonical: "https://coffeedonuttv.com/free-trial",
+    canonical: "https://www.coffeedonuttv.com/free-trial",
   },
 };
 
